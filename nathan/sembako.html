@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Marketmy - Home</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial, sans-serif; }
+  body { background:#111214; }
+
+  .page {
+    max-width:1100px;
+    margin:0 auto;
+    background:#e9e9ea;
+    min-height:100vh;
+    padding-bottom:40px;
+  }
+
+  /* Navbar */
+  .navbar {
+    background:#1e7d32;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 28px;
+  }
+  .nav-left { display:flex; align-items:center; gap:28px; }
+  .brand { display:flex; align-items:center; gap:8px; font-weight:700; font-size:16px; }
+  .brand .logo {
+    width:24px; height:24px; background:#fff; color:#1e7d32;
+    border-radius:6px; display:flex; align-items:center; justify-content:center;
+    font-size:13px;
+  }
+  .nav-links { display:flex; gap:22px; list-style:none; }
+  .nav-links li { font-size:13.5px; opacity:.9; cursor:pointer; }
+  .nav-links li:hover { opacity:1; text-decoration:underline; }
+
+  .nav-right { display:flex; align-items:center; gap:16px; }
+  .search-box {
+    background:#fff;
+    border-radius:20px;
+    padding:6px 14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#8a8a8a;
+    font-size:12.5px;
+    width:220px;
+  }
+  .icon-btn {
+    width:30px; height:30px; border-radius:50%;
+    background:rgba(255,255,255,.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px;
+  }
+
+  /* Hero */
+  .hero {
+    display:flex;
+    gap:16px;
+    padding:20px 24px 0 24px;
+  }
+  .banner {
+    flex:1.6;
+    border-radius:14px;
+    background:linear-gradient(180deg,#3b6fb0 0%, #6aa8d8 60%, #eef2f4 60%);
+    position:relative;
+    min-height:170px;
+    overflow:hidden;
+    color:#fff;
+    padding:26px 30px;
+  }
+  .banner .kicker {
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:2px;
+    line-height:1.1;
+  }
+  .banner .badge {
+    display:inline-block;
+    margin-top:10px;
+    background:#f2c400;
+    color:#1a1a1a;
+    font-weight:800;
+    font-size:14px;
+    padding:6px 14px;
+    border-radius:6px;
+    transform:rotate(-2deg);
+  }
+  .banner .fine {
+    margin-top:10px;
+    font-size:11px;
+    opacity:.85;
+  }
+  .banner .houses {
+    position:absolute;
+    bottom:0; right:20px;
+    font-size:60px;
+    opacity:.9;
+  }
+
+  .promo-card {
+    flex:1;
+    background:#1e7d32;
+    border-radius:14px;
+    padding:22px 24px;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:170px;
+  }
+  .promo-tag {
+    background:#f2c400;
+    color:#1a1a1a;
+    font-weight:700;
+    font-size:11px;
+    padding:4px 10px;
+    border-radius:12px;
+    width:fit-content;
+    margin-bottom:10px;
+  }
+  .promo-card h2 { font-size:22px; margin-bottom:8px; }
+  .promo-card p { font-size:12.5px; opacity:.9; line-height:1.4; margin-bottom:14px; }
+  .promo-card button {
+    background:#fff;
+    color:#1e7d32;
+    border:none;
+    font-weight:700;
+    font-size:12.5px;
+    padding:8px 16px;
+    border-radius:8px;
+    width:fit-content;
+    cursor:pointer;
+  }
+
+  /* Sections */
+  .section {
+    padding:24px 24px 0 24px;
+  }
+  .section h3 {
+    font-size:14px;
+    color:#222;
+    margin-bottom:14px;
+  }
+  .product-grid {
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+  }
+  .product-card {
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+  }
+  .product-img {
+    height:110px;
+    background:#a7e0a0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    color:#2c5c2c;
+    font-weight:700;
+    text-align:center;
+    padding:8px;
+    position:relative;
+  }
+  .discount-tag {
+    position:absolute;
+    top:6px; left:6px;
+    background:#f2c400;
+    color:#1a1a1a;
+    font-size:9px;
+    font-weight:800;
+    padding:2px 6px;
+    border-radius:4px;
+  }
+  .product-info { padding:10px 12px 12px 12px; }
+  .product-name {
+    font-size:11.5px;
+    color:#333;
+    margin-bottom:4px;
+  }
+  .product-price {
+    font-size:12.5px;
+    font-weight:700;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .add-btn {
+    width:20px; height:20px; border-radius:50%;
+    background:#1e7d32;
+    color:#fff;
+    border:none;
+    font-size:12px;
+    line-height:1;
+    cursor:pointer;
+  }
+
+  @media (max-width:768px){
+    .hero { flex-direction:column; }
+    .product-grid { grid-template-columns:repeat(2,1fr); }
+    .nav-links { display:none; }
+    .search-box { width:120px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="brand"><span class="logo">M</span> Marketmy</div>
+      <ul class="nav-links">
+        <li>Home</li>
+        <li>Kategori</li>
+        <li>Promo</li>
+        <li>Pesan</li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">🔍 Cari kebutuhan harian...</div>
+      <div class="icon-btn">🛒</div>
+      <div class="icon-btn">👤</div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="banner">
+      <div class="kicker">WINTER<br>MEGA SALE</div>
+      <div class="badge">UP TO 50% OFF</div>
+      <div class="fine">Limited time offer</div>
+      <div class="houses">🏘️</div>
+    </div>
+    <div class="promo-card">
+      <div class="promo-tag">PROMO SPESIAL</div>
+      <h2>SEMBAKO</h2>
+      <p>Beli kebutuhan dasar anda disini dan dapatkan promo di setiap pembelian</p>
+      <button>Cek Sekarang</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Terlaris Minggu Ini</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Dancow</div>
+        <div class="product-info">
+          <div class="product-name">Susu Dancow</div>
+          <div class="product-price">Rp 24.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Teh Hijau</div>
+        <div class="product-info">
+          <div class="product-name">Teh Hijau</div>
+          <div class="product-price">Rp 12.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Daia</div>
+        <div class="product-info">
+          <div class="product-name">Deterjen Daia</div>
+          <div class="product-price">Rp 18.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Beras</div>
+        <div class="product-info">
+          <div class="product-name">Beras Raja Lele</div>
+          <div class="product-price">Rp 82.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Dancow</div>
+        <div class="product-info">
+          <div class="product-name">Susu Dancow</div>
+          <div class="product-price">Rp 24.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Teh Hijau</div>
+        <div class="product-info">
+          <div class="product-name">Teh Hijau</div>
+          <div class="product-price">Rp 12.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Daia</div>
+        <div class="product-info">
+          <div class="product-name">Deterjen Daia</div>
+          <div class="product-price">Rp 18.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Beras</div>
+        <div class="product-info">
+          <div class="product-name">Beras Raja Lele</div>
+          <div class="product-price">Rp 82.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Diskon Penuh</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Dancow</div>
+        <div class="product-info">
+          <div class="product-name">Susu Dancow</div>
+          <div class="product-price">Rp 24.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Teh Hijau</div>
+        <div class="product-info">
+          <div class="product-name">Teh Hijau</div>
+          <div class="product-price">Rp 12.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Daia</div>
+        <div class="product-info">
+          <div class="product-name">Deterjen Daia</div>
+          <div class="product-price">Rp 18.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><span class="discount-tag">DISKON</span>Beras</div>
+        <div class="product-info">
+          <div class="product-name">Beras Raja Lele</div>
+          <div class="product-price">Rp 82.000<button class="add-btn">+</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
