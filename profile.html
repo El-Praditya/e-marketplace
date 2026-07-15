@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketet.my - Profil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body>
 
+<div class="frame">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo-box">🛍️</span>
+      Marketet.my
+    </div>
+
+    <div class="menu-label">MENU UTAMA</div>
+    <ul class="menu">
+      <li class="active"><a href="#"><span class="icon">👤</span>Profile</a></li>
+      <li><a href="#"><span class="icon">🛒</span>Keranjang</a></li>
+      <li><a href="#"><span class="icon">🏠</span>Home</a></li>
+      <li><a href="#"><span class="icon">🏷️</span>Kupon</a></li>
+      <li><a href="#"><span class="icon">🔔</span>Notifikasi</a></li>
+      <li><a href="#"><span class="icon">📦</span>Paket</a></li>
+    </ul>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="logout-box">
+      <a href="#" id="logoutBtn"><span class="icon">⏻</span>Log Out</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1 id="greeting">Hail Username938</h1>
+        <p>Kelola informasi akun kamu</p>
+      </div>
+      <div class="avatar-circle" id="topAvatar">U</div>
+    </div>
+
+    <div class="content">
+
+      <!-- Profil card -->
+      <section class="card">
+        <div class="card-title">Profil</div>
+        <div class="card-sub">Ubah informasi akun kamu</div>
+        <div class="profile-row">
+          <div class="profile-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2f7a45" stroke-width="1.8">
+              <circle cx="12" cy="8" r="3.2"/>
+              <path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/>
+            </svg>
+          </div>
+          <div class="profile-info">
+            <div class="name-row">
+              <span id="displayName">Username938</span>
+              <span class="edit-icon" title="Ubah nama">✎</span>
+            </div>
+            <div class="address" id="displayAddress">Jl. Dr. C. Notoatmodjo, RT 02 RW 04, No 24</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Informasi Pribadi -->
+      <section class="card">
+        <div class="card-title">Informasi Pribadi</div>
+        <div class="card-sub">Ubah detail informasi kamu</div>
+
+        <form id="infoForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="namaLengkap">Nama Lengkap</label>
+              <input type="text" id="namaLengkap" placeholder="Masukan Nama Lengkap">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Masukan Alamat Email">
+            </div>
+            <div class="field">
+              <label for="noTelepon">No. Telepon</label>
+              <input type="tel" id="noTelepon" placeholder="Masukan No. Telepon">
+            </div>
+            <div class="field">
+              <label for="tanggalLahir">Tanggal Lahir</label>
+              <input type="text" id="tanggalLahir" placeholder="dd/mm/yyyy" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+            </div>
+            <div class="field full">
+              <label for="alamat">Alamat</label>
+              <textarea id="alamat" rows="2" placeholder="Masukan Alamat Lengkap Kamu"></textarea>
+              <div class="field-hint">Alamat utama Untuk Pengiriman Pesanan Kamu</div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Keamanan Akun -->
+      <section class="card">
+        <div class="card-title">Keamanan Akun</div>
+        <div class="card-sub">Ubah kata sandi secara berkala untuk menjaga keamanan akun</div>
+
+        <form id="securityForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="kataSandiBaru">Kata Sandi Baru</label>
+              <input type="password" id="kataSandiBaru" placeholder="Masukan kata sandi baru">
+            </div>
+            <div class="field">
+              <label for="konfirmasiSandi">Konfirmasi Kata Sandi</label>
+              <input type="password" id="konfirmasiSandi" placeholder="Masukan kata sandi baru">
+            </div>
+          </div>
+          <div class="card-footer-btn">
+            <button type="submit" class="btn btn-green">KONFIRMASI</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Hapus Akun -->
+      <section class="card danger-card">
+        <div>
+          <div class="card-title">Hapus Akun</div>
+          <div class="card-sub">Tindakan ini akan menghapus semua data akun kamu secara permanen</div>
+        </div>
+        <button class="btn btn-red" id="deleteBtn">HAPUS AKUN</button>
+      </section>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>
