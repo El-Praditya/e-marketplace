@@ -1,4 +1,3 @@
-// Ambil elemen DOM yang dibutuhkan
 const namaInput = document.getElementById('namaLengkap');
 const alamatInput = document.getElementById('alamat');
 const displayName = document.getElementById('displayName');
@@ -7,7 +6,6 @@ const greeting = document.getElementById('greeting');
 const topAvatar = document.getElementById('topAvatar');
 const editNameIcon = document.getElementById('editNameIcon');
 
-// 1. Sinkronkan input nama ke display profil secara real-time
 namaInput.addEventListener('input', () => {
   const val = namaInput.value.trim();
   displayName.textContent = val || 'Username938';
@@ -15,17 +13,14 @@ namaInput.addEventListener('input', () => {
   topAvatar.textContent = (val ? val[0] : 'U').toUpperCase();
 });
 
-// 2. Sinkronkan input alamat ke display profil secara real-time
 alamatInput.addEventListener('input', () => {
   displayAddress.textContent = alamatInput.value.trim() || 'Jl. Dr. C. Notoatmodjo, RT 02 RW 04, No 24';
 });
 
-// 3. Tambahan fungsionalitas: Fokus ke input nama saat ikon pensil (edit) diklik
 editNameIcon.addEventListener('click', () => {
   namaInput.focus();
 });
 
-// 4. Submit Form Keamanan Akun (Konfirmasi Ubah Sandi)
 document.getElementById('securityForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const pass = document.getElementById('kataSandiBaru').value;
