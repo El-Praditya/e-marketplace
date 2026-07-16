@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market.my - Belanja Kebutuhan Harian</title>
+<style>
+  :root{
+    --green: #3F7D4D;
+    --green-dark: #2E5E3A;
+    --green-light: #EAF6EC;
+    --green-pale: #B7E6BE;
+    --yellow: #F5A623;
+    --bg: #E9E9E9;
+    --white: #FFFFFF;
+    --text-dark: #1F2A22;
+    --text-muted: #6B776E;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 4px 14px rgba(0,0,0,0.06);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+  }
+
+  /* Top accent bar */
+  .top-accent{
+    height: 10px;
+    background: var(--green);
+  }
+
+  /* Topbar */
+  .topbar{
+    background: var(--white);
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top:0;
+    z-index: 10;
+    gap: 24px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
+  }
+
+  .brand-icon{
+    width:48px;
+    height:48px;
+    border-radius: 12px;
+    background: var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size: 22px;
+  }
+
+  .brand-name{
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: 32px;
+    font-size: 16px;
+    color: #333;
+    flex-shrink:0;
+  }
+
+  .nav-links a{
+    text-decoration:none;
+    color: inherit;
+  }
+
+  .nav-links a:hover{ color: var(--green); }
+
+  .search-bar{
+    flex:1;
+    max-width: 460px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background: var(--green-light);
+    border-radius: 999px;
+    padding: 12px 20px;
+    color: var(--text-muted);
+  }
+
+  .search-bar input{
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size: 15px;
+    color: var(--text-dark);
+    width:100%;
+  }
+
+  .search-bar input::placeholder{ color: var(--text-muted); }
+
+  .topbar-icons{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    flex-shrink:0;
+  }
+
+  .icon-btn{
+    width: 42px;
+    height: 42px;
+    border-radius:50%;
+    background: var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    position:relative;
+    cursor:pointer;
+  }
+
+  .icon-btn .badge{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    background: var(--yellow);
+    color:#fff;
+    font-size: 10px;
+    font-weight:700;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .profile-chip{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+  }
+
+  .profile-chip .avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background: var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+  }
+
+  .profile-chip .info{
+    line-height:1.2;
+  }
+
+  .profile-chip .info .name{
+    font-weight:700;
+    font-size:14px;
+  }
+
+  .profile-chip .info .role{
+    font-size:12px;
+    color: var(--text-muted);
+  }
+
+  /* Main content */
+  .content{
+    padding: 32px 40px 60px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* Hero row */
+  .hero-row{
+    display:grid;
+    grid-template-columns: 2.1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .promo-banner{
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    border-radius: var(--radius-lg);
+    padding: 44px 48px;
+    color: #fff;
+    display:flex;
+    flex-direction:column;
+    gap: 18px;
+    justify-content:center;
+  }
+
+  .promo-tag{
+    display:inline-flex;
+    align-self:flex-start;
+    background: var(--yellow);
+    color:#fff;
+    font-weight:700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 8px 18px;
+    border-radius: 999px;
+  }
+
+  .promo-banner h1{
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .promo-banner p{
+    font-size: 15px;
+    opacity: 0.92;
+    max-width: 480px;
+    line-height:1.5;
+  }
+
+  .promo-btn{
+    align-self:flex-start;
+    background: var(--white);
+    color: var(--green-dark);
+    border: none;
+    padding: 13px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor:pointer;
+  }
+
+  .stat-cards{
+    display:flex;
+    flex-direction:column;
+    gap: 24px;
+  }
+
+  .stat-card{
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 26px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex:1;
+  }
+
+  .stat-card .label{
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .stat-card .value{
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+
+  .stat-icon{
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 22px;
+    color: var(--green);
+    flex-shrink:0;
+  }
+
+  .stat-icon.star{ color: var(--yellow); }
+
+  /* Section headers */
+  .section-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 20px;
+  }
+
+  .section-header h2{
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .section-header a{
+    color: var(--green);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration:none;
+  }
+
+  /* Category grid */
+  .category-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+
+  .category-card{
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 30px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 14px;
+    cursor:pointer;
+    transition: transform .15s ease;
+  }
+
+  .category-card:hover{ transform: translateY(-3px); }
+
+  .category-icon{
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    background: var(--green-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 26px;
+    color: var(--green);
+  }
+
+  .category-card .cat-name{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  /* Product grid */
+  .product-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .product-card{
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .product-image{
+    position:relative;
+    background: var(--green-pale);
+    height: 170px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 14px;
+  }
+
+  .product-image img{
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .discount-badge{
+    position:absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--yellow);
+    color:#fff;
+    font-size: 12px;
+    font-weight:700;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .product-info{
+    padding: 16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+
+  .product-info .p-name{
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .product-info .p-size{
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: -6px;
+  }
+
+  .price-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .price-row .price{
+    color: var(--green);
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .add-btn{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--green);
+    color:#fff;
+    border:none;
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+
+  /* Bottom banners */
+  .bottom-banners{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .banner{
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#fff;
+  }
+
+  .banner.member{
+    background: linear-gradient(135deg, var(--yellow), #F7B94E);
+  }
+
+  .banner.delivery{
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+  }
+
+  .banner h3{
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .banner p{
+    font-size: 13.5px;
+    opacity: 0.92;
+  }
+
+  .banner .banner-icon{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 22px;
+    flex-shrink:0;
+  }
+
+  @media (max-width: 1100px){
+    .hero-row{ grid-template-columns: 1fr; }
+    .category-grid{ grid-template-columns: repeat(3,1fr); }
+    .product-grid{ grid-template-columns: repeat(2,1fr); }
+    .bottom-banners{ grid-template-columns: 1fr; }
+    .nav-links{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-accent"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">🛒</div>
+      <div class="brand-name">Market.my</div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="promo.html">Promo</a>
+      <a href="order.html">Order</a>
+    </nav>
+
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Cari kebutuhan harian...">
+    </div>
+
+    <div class="topbar-icons">
+
+      <!-- keranjang -->
+      <a href="keranjang.html" class="icon-btn" style="text-decoration:none;">
+        🛒
+        <span class="badge">5</span>
+      </a>
+
+      <a href="notifikasi.html" class="icon-btn" style="text-decoration:none;">
+        🔔
+        <span class="badge">5</span>
+      </a>
+
+      <a href="profile.html" class="icon-btn" style="text-decoration:none;">
+        👤
+        <span class="badge">5</span>
+      </a>
+
+      <div class="profile-chip">
+        <div class="info">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- Hero -->
+    <section class="hero-row">
+      <div class="promo-banner">
+        <span class="promo-tag">PROMO SPESIAL</span>
+        <h1>Belanja kebutuhan harian<br>lebih murah</h1>
+        <p>Nikmati diskon hingga 20% untuk semua produk sembako minggu ini. Gratis ongkir se-Salatiga</p>
+        <button class="promo-btn">Belanja Sekarang</button>
+      </div>
+
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div>
+            <div class="label">Total Pesanan Anda</div>
+            <div class="value">12 Pesanan</div>
+          </div>
+          <div class="stat-icon">🛒</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="label">Reward Point</div>
+            <div class="value">500 Point</div>
+          </div>
+          <div class="stat-icon star">⭐</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kategori -->
+    <section>
+      <div class="section-header">
+        <h2>Kategori Belanja</h2>
+        <a href="#">Lihat semua →</a>
+      </div>
+      <div class="category-grid">
+        <div class="category-card">
+          <a href="sembako.html" class="category-card" style="text-decoration:none;">
+            <div class="category-icon">🛏️</div>
+            <div class="cat-name">Sembako</div>
+          </a>
+        </div>
+
+        <div class="category-card">
+          <a href="kesehatan.html" class="category-card" style="text-decoration:none;">
+            <div class="category-icon">➕</div>
+            <div class="cat-name">Kesehatan</div>
+          </a>
+        </div>
+
+        <div class="category-card">
+          <a href="snack.html" class="category-card" style="text-decoration:none;">
+            <div class="category-icon">🍿</div>
+            <div class="cat-name">Snack</div>
+          </a>
+        </div>
+
+        <div class="category-card">
+          <a href="lol.html" class="category-card" style="text-decoration:none;">
+            <div class="category-icon">
+            <i class="fa-solid fa-ellipsis"></i>
+            </div>
+            <div class="cat-name">Lainnya</div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Produk Terlaris -->
+    <section>
+      <div class="section-header">
+        <h2>Terlaris Minggu Ini</h2>
+      </div>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <div class="product-image">
+            <span class="discount-badge">15%</span>
+            <img src="https://via.placeholder.com/140x140.png?text=Dancow" alt="Susu Dancow">
+          </div>
+          <div class="product-info">
+            <div class="p-name">Susu Dancow</div>
+            <div class="p-size">120 g</div>
+            <div class="price-row">
+              <span class="price">Rp. 150.000,00</span>
+              <button class="add-btn">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <span class="discount-badge">15%</span>
+            <img src="https://via.placeholder.com/140x140.png?text=Gulaku" alt="Gulaku">
+          </div>
+          <div class="product-info">
+            <div class="p-name">GULAKU</div>
+            <div class="p-size">1 kg</div>
+            <div class="price-row">
+              <span class="price">Rp. 20.000,00</span>
+              <button class="add-btn">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <span class="discount-badge">15%</span>
+            <img src="https://via.placeholder.com/140x140.png?text=Daia" alt="Sabun Daia">
+          </div>
+          <div class="product-info">
+            <div class="p-name">Sabun Daia</div>
+            <div class="p-size">900 g</div>
+            <div class="price-row">
+              <span class="price">Rp. 33.000,00</span>
+              <button class="add-btn">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <span class="discount-badge">15%</span>
+            <img src="https://via.placeholder.com/140x140.png?text=Beras" alt="Beras Premium Sania">
+          </div>
+          <div class="product-info">
+            <div class="p-name">Beras Premium Sania</div>
+            <div class="p-size">5 kg</div>
+            <div class="price-row">
+              <span class="price">Rp. 80.000,00</span>
+              <button class="add-btn">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom banners -->
+    <section class="bottom-banners">
+      <div class="banner member">
+        <div>
+          <h3>Member Baru</h3>
+          <p>Dapatkan diskon 10% untuk pembelian pertama</p>
+        </div>
+        <div class="banner-icon">⭐</div>
+      </div>
+      <div class="banner delivery">
+        <div>
+          <h3>Antar Cepat</h3>
+          <p>Pesanan tiba kurang dari 1 jam</p>
+        </div>
+        <div class="banner-icon">🚚</div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
